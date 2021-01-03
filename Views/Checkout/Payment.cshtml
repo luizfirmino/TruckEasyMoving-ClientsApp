@@ -1,0 +1,30 @@
+﻿@model ClientsApp.Models.Order
+
+@{
+    ViewBag.Title = "Order Payment";
+}
+
+<div class="col-md-12">
+    <h1 class="my-4">
+        Payment confirmation
+    </h1>
+</div>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-12 text-center">
+
+    <div class="alert alert-success text-center" role="alert">
+        Thank you for your payment!
+    </div>
+
+    <span class="lead">Order #@Model.contractNumber</span><br />
+    <p>We have received your payment and we will be reviewing and processing it by the end of the day.</p>
+    <p>Your receipt will be available here after we process your payment.</p>
+    <p>Please, feel free to contact us if you have any question.</p>
+
+    <p>
+        Thank you for your business!<br />
+        <small>Truck Easy Team</small>
+    </p>
+
+</div>

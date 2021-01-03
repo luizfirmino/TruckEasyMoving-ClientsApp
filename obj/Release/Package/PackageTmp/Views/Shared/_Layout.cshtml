@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”robots” content=”noindex,nofollow”>
+    <title>@ViewBag.Title - Clients Area</title>
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/Site.css")
+    <script src="https://kit.fontawesome.com/a5a44d82c3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <img src="/Content/Images/truck-easy-logo.png" width="80">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://www.truckeasymoving.com/">TruckEasyMoving.com</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="mailto:info@truckeasymoving.com">info@truckeasymoving.com</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sms:16194319439">+1 619 431 9439</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-sm-none col-1"><a class="nav-link" target="_blank" href="https://www.truckeasymoving.com/"><i class="fas fa-external-link-alt" alt="WebSite"></i></a></div>
+            <div class="d-sm-none col-1"><a class="nav-link" target="_blank" href="mailto:info@truckeasymoving.com"><i class="far fa-envelope" alt="E-mail Us"></i></a></div>
+            <div class="d-sm-none col-1"><a class="nav-link" href="sms:+16194319439"><i class="fas fa-sms" alt="Text Us"></i></a></div>
+            <div class="d-sm-none col-1"><a class="nav-link" href="tel:+16194319439"><i class="fas fa-phone-volume" alt="Call Us"></i></a></div>
+            <div class="d-sm-none col-1"><a class="nav-link" href="/Home/logout"><i class="fas fa-sign-out-alt" alt="Logout"></i></a></div>
+            <div class="d-sm-none col-1">&nbsp;</div>
+        </div>     
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            @RenderBody()
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Truck Easy Moving & Services</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    
+    @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,497 @@
+﻿@model ClientsApp.Models.Order
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<div class="col-md-12">
+    <h1 class="my-4">
+        Order Details
+        <small>#@Model.contractNumber</small>
+    </h1>
+</div>
+
+<div class="col-md-12">
+    <div class="progress" style="height: 20px;">
+        @if (Model.orderStatusId == 1)
+        {
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Received</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Booked</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">In Progress</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing Payment</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Finished</div>
+        }
+
+        @if (Model.orderStatusId == 2)
+        {
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Received</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Booked</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">In Progress</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing Payment</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Finished</div>
+        }
+
+        @if (Model.orderStatusId == 3 || Model.orderStatusId == 7)
+        {
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Received</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Booked</div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">In Progress</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing Payment</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Finished</div>
+        }
+
+        @if (Model.orderStatusId == 4 || Model.orderStatusId == 5)
+        {
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Received</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Booked</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">In Progress</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing Payment</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Finished</div>
+        }
+
+        @if (Model.orderStatusId == 8)
+        {
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Received</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Booked</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">In Progress</div>
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Processing Payment</div>
+            <div class="text-center" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Finished</div>
+        }
+
+        @if (Model.orderStatusId == 6)
+        {
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+        }
+
+    </div>
+</div>
+
+@if (Model.isJobDone)
+{
+
+    <div class="col-md-6">
+        <br />
+        <!-- CUSTOMER Widget -->
+        <div class="card my-6">
+            <h5 class="card-header">@Html.DisplayFor(model => model.customerName)</h5>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><b>Service</b></li>
+                            <li>@Html.DisplayFor(model => model.service)</li>
+                            <li>&nbsp;</li>
+                            <li><b>Hourly Rate</b></li>
+                            <li>@Model.hourRate</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><b>Date</b></li>
+                            <li>@Html.DisplayFor(model => model.dateSchedule)</li>
+                            <li>&nbsp;</li>
+
+                            <li><b>Duration (hours)</b></li>
+                            <li>@Model.duration</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td scope="col"><b>Description</b></td>
+                                <td scope="col" align="right"><b>Total</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.payments)
+                            {
+                                <tr>
+                                    <td>@item.type</td>
+                                    <td align="right">@item.amount</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        <!-- Side Widget -->
+        <div class="card my-4">
+            <h5 class="card-header">Rate Our Services</h5>
+
+            @if (Model.review == null)
+            {
+
+                using (Html.BeginForm())
+                {
+                    <input type="hidden" value="@Model.orderId" name="review.orderId" />
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5 class="card-title">We hope we have met your expectations!</h5>
+                            We'd really appreciate you taking a few minutes to write a review of our work. Reviews are important because they help us improve our processes and reach new customers.<br />
+                            Thanks in advance!
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-star text-warning"></i>
+                            @Html.RadioButtonFor(model => model.review.stars, "1", new { required = "required" }) 1
+                            @Html.RadioButtonFor(model => model.review.stars, "2", new { required = "required" }) 2
+                            @Html.RadioButtonFor(model => model.review.stars, "3", new { required = "required" }) 3
+                            @Html.RadioButtonFor(model => model.review.stars, "4", new { required = "required" }) 4
+                            @Html.RadioButtonFor(model => model.review.stars, "5", new { required = "required" }) 5
+                        </li>
+                        <li class="list-group-item">
+                            @Html.TextAreaFor(model => model.review.review, new { @class = "form-control", placeholder = "Your review ...", required = "required", maxlength = "1000" })
+                        </li>
+                        <li class="list-group-item"><button class="btn btn-lg btn-primary btn-block" type="submit">Submit Review</button></li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h5 class="card-title">Thank you for your review</h5>
+                    </li>
+                    <li class="list-group-item">
+                        @for (int x = 0; x < Model.review.stars; x++)
+                        {
+                            <i class="fas fa-star text-warning"></i>
+                        }
+                    </li>
+                    <li class="list-group-item">
+                        @Html.DisplayFor(model => Model.review.review)
+                    </li>
+                </ul>
+            }
+        </div>
+
+    </div>
+
+}
+else
+{
+
+    <div class="col-md-12 mt-4">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong><i class="fas fa-info-circle"></i> COVID-19 SAFETY MEASURES</strong> <br />
+
+            The safety of our crew and customers are very important to us and we wanted to make sure we are in a safe place to help with your project.<br />
+            According to the CDC guidelines we will be using the following operating procedures:<br />
+
+            <ul>
+                <li>sanitizing trucks and equipment</li>
+                <li>provide hand sanitizer throughout the job</li>
+                <li>maintain 6 feet of distance from customers</li>
+                <li>wear masks during the job</li>
+            </ul>
+
+            <hr />
+            To avoid contact, we are encouraging our clients to use contactless payment methods available such as Debit or Credit Card, Venmo or Zelle.<br />
+            <strong>At this moment CASH is not an option for payments.</strong>
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+<div class="col-md-6">
+
+    <!-- CUSTOMER Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">@Html.DisplayFor(model => model.customerName)</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li><b>Phone Number</b></li>
+                        <li>@Html.DisplayFor(model => model.phoneNumber)</li>
+                        <li class="d-block d-sm-none">&nbsp;</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li><b>E-mail</b></li>
+                        @if (Model.email == null || Model.email == String.Empty)
+                                                    {
+                        <li>Not provided</li>
+                                                    }
+                                                    else
+                                                    {
+                        <li>@Html.DisplayFor(model => model.email)</li>
+                                                    }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Job Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">@Model.service</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <small>
+                    @if (!(Model.serviceDescription == null || Model.serviceDescription == String.Empty))
+                                            {
+                    @Model.serviceDescription<br />
+                                            }
+                    <b>Hourly Rate:</b> @Model.hourRate (@Model.minimumHours hours minimum and thereafter @Model.minuteIncrements minute increments)<br />
+                </small>
+            </li>
+            @if (!(Model.servicePreparation == String.Empty || Model.servicePreparation == null))
+                            {
+            <li class="list-group-item bg-light"><i class="fas fa-star"></i> <small>@Model.servicePreparation</small></li>
+                            }
+        </ul>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li><b>Status</b></li>
+                        <li>@Model.status</li>
+                        <li>&nbsp;</li>
+                        <li><b>Arrival Time</b></li>
+                        <li>@Html.DisplayFor(model => model.timeSchedule)</li>
+                        <li>&nbsp;</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li><b>Scheduled Date</b></li>
+                        <li>@Html.DisplayFor(model => model.dateSchedule)</li>
+                    </ul>
+                </div>
+
+                @if (!(Model.notes == null))
+                                    {
+                <div class="col-lg-12">
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-block d-sm-none">&nbsp;</li>
+                        <li><b>Additional Details</b></li>
+                        <li>@Html.DisplayFor(model => model.notes)</li>
+                    </ul>
+                </div>
+                                    }
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Addresses Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Address(es)</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (!(Model.addresses.Count() > 0))
+                                            {
+                    <p>ADDRESS(ES) NOT AVAILABLE YET</p>
+                                            }
+                                            else
+                                            {
+
+                    <ul class="list-unstyled mb-0">
+                        @foreach (var item in Model.addresses)
+                                                        {
+                        <li><b>@item.order</b></li>
+                        <li>
+                            @item.address @item.addressComp
+                            <br />
+                            <small>@item.city, @item.state @item.zipcode</small>
+                        </li>
+                                                            if (!(item.notes == String.Empty))
+                                                            {
+                        <li>@item.notes</li>
+                                                            }
+                        <li>&nbsp;</li>
+                                                        }
+                    </ul>
+                                            }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Job Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Team</h5>
+        <div class="card-body">
+            <div class="row">
+                @if (!(Model.resources.Count() > 0))
+                                    {
+                <div class="col-lg-12">
+                    NO TEAM MEMBER(S) SIGNED UP FOR THIS ORDER YET
+                </div>
+
+                                    }
+                                    else
+                                    {
+
+                                        foreach (var item in Model.resources)
+                                        {
+
+                <div class="col-4 col-md-3">
+                    @if (item.profilePicture == null || item.profilePicture == String.Empty)
+                                                    {
+                    <img src="/Content/Images/no-avatar.png" width="100" class="img-responsive img-thumbnail" />
+                                                    }
+                                                    else
+                                                    {
+                    <img src="https://pros.truckeasymoving.com/storage/app/public/@item.profilePicture" width="100" class="img-responsive img-thumbnail" />
+                                                    }
+                </div>
+                <div class="col-7 col-md-8">
+                    <b>@item.resourceName</b>
+                    <br />
+                    @item.role<br />
+                    @if (item.isLeader)
+                                                    {
+                                                        if (Model.isJobDay)
+                                                        {
+                    <a href="sms:+1@item.phoneNumber"><small>@item.phoneNumber</small></a>
+
+                                                        }
+                                                        else
+                                                        {
+                    <small>Phone number will be available on the job day</small>
+                                                        }
+                                                    }
+                </div>
+
+                                        }
+                                    }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-6">
+
+    <!-- Payment METHODS -->
+    <div class="card my-4">
+        <h5 class="card-header">Payment Methods</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <b>Credit and Debit Card</b><br />
+                    <i class="fab fa-2x fa-cc-mastercard"></i>
+                    <i class="fab fa-2x fa-cc-visa"></i>
+                    <i class="fab fa-2x fa-cc-discover"></i>
+                    <i class="fab fa-2x fa-cc-amex"></i>
+                    <i class="fab fa-2x fa-apple-pay"></i><br />
+                </span>
+                <span class="text-muted"><small>3% fee</small></span>
+            </li>
+            <li class="list-group-item">
+                <b>Venmo</b>
+                <ul class="list-unstyled mb-0">
+                    <li>Name: Truck Easy</li>
+                    <li>Username: TruckEasyMoving</li>
+                    <li><a href="https://venmo.com/code?user_id=2030064342401024684">Click here to see our account</a></li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <b>Zelle Money Transfer</b>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        Recipient's information:
+                        <ul class="list-unstyled mb-0">
+                            <li>Phone number: 619 431 9439</li>
+                            <li>First name: Luiz</li>
+                            <li>Last name: Firmino</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <b>Money Check</b><br />
+                Make it payable to: Truck Easy Moving & Services
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">We also offer</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-truck-loading"></i></h5>
+                            <p class="card-text">Local Moving</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-box-open"></i></h5>
+                            <p class="card-text">Packing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-people-carry"></i></h5>
+                            <p class="card-text">Moving Labor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tools"></i></h5>
+                            <p class="card-text">Furniture Assembly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-couch"></i></h5>
+                            <p class="card-text">Pick-ups and deliveries</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-tv"></i></h5>
+                            <p class="card-text">TV Mount Installation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+}
